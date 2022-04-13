@@ -1,0 +1,27 @@
+# Add homebrew to the $PATH variable
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Set prompt to show three directories and add a arrow in the end robbyrussel theme
+PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ ) %{$fg[cyan]%}%3d%{$reset_color%} \$(git_prompt_info)➜ "
+
+# Setting default JDK to java 8
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_321.jdk/Contents/Home
+
+# Kubectl alias
+alias k="kubectl"
+
+#Local sonar
+alias sonarqube="~/development/apps/sonarqube-7.7/bin/macosx-universal-64/sonar.sh"
+
+# Gradle tasks
+gradleCmd='./gradlew -Dorg.gradle.jvmargs=-Xmx2g '
+noDaemon='--no-daemon --no-parallel --max-workers=1 '
+
+# SONAR
+alias run-sonar="${gradleCmd} sonarqube -Dsonar.host.url=localhost:9000 -Dsonar.login=136f0a8cb098c98738f1b12b8ef702cc872e8194"
+
+# TESTS
+alias run-tests="${gradleCmd} test"
+
+# SPRING SERVICE DEV14
+alias run-microservice="SPRING_PROFILES_ACTIVE=dev14 ${gradleCmd} clean bootRun"
