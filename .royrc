@@ -10,18 +10,23 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_321.jdk/Contents/Hom
 # Kubectl alias
 alias k="kubectl"
 
+# Minikube alias
+alias mk="minikube"
+
 #Local sonar
 alias sonarqube="~/development/apps/sonarqube-7.7/bin/macosx-universal-64/sonar.sh"
 
 # Gradle tasks
-gradleCmd='./gradlew -Dorg.gradle.jvmargs=-Xmx2g '
-noDaemon='--no-daemon --no-parallel --max-workers=1 '
+_GRADLEW_CMD='./gradlew -Dorg.gradle.jvmargs=-Xmx2g '
+_NO_DAEMON='--no-daemon --no-parallel --max-workers=1 '
 
 # SONAR
-alias run-sonar="${gradleCmd} sonarqube -Dsonar.host.url=localhost:9000 -Dsonar.login=136f0a8cb098c98738f1b12b8ef702cc872e8194"
+alias run-sonar="${_GRADLEW_CMD} sonarqube -Dsonar.host.url=${_SONAR_QUBE_HOST} -Dsonar.login=${_SONAR_QUBE_TOKEN}"
 
 # TESTS
-alias run-tests="${gradleCmd} test"
+alias run-tests="${_GRADLEW_CMD} test"
 
-# SPRING SERVICE DEV14
-alias run-microservice="SPRING_PROFILES_ACTIVE=dev14 ${gradleCmd} clean bootRun"
+# SPRING SERVICE DEV
+alias run-microservice="SPRING_PROFILES_ACTIVE=dev ${_GRADLEW_CMD} clean bootRun"
+
+export PATH="${HOME}/.npm-global/bin:${PATH}"
